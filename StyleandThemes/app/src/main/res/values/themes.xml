@@ -1,0 +1,18 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.StyleAndThemes" parent="Base.Theme.StyleAndThemes" />
+
+    <style name="Base.Theme.StyleAndThemes" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/cardview_light_background</item>
+        <item name="colorPrimaryDark">@color/design_default_color_on_secondary</item>
+        <item name="colorAccent">@color/design_default_color_secondary_variant</item>
+    </style>
+
+    <style name="MyButtonBold">
+        <item name="android:textSize">25sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#FF9800</item>
+    </style>
+
+</resources>
