@@ -2,6 +2,7 @@ package com.horidas.fragmentlayout;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -15,6 +16,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String ROOT_FRAGMENT_TAG = "756755";
     Button btnFragA, btnFragB, btnFragC;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         btnFragA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFragment(new AFragment(),1);
+                loadFragment(AFragment.getInstance("Horidas",24),1);
             }
         });
         btnFragB.setOnClickListener(new View.OnClickListener() {
@@ -55,11 +57,29 @@ public class MainActivity extends AppCompatActivity {
     public void loadFragment(Fragment fragment, int flag){
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
+
+//        //for data passing in fragment
+//        Bundle bundle = new Bundle();
+//        bundle.putString("name","horidas");
+//        bundle.putInt("Roll No",43);
+//        fragment.setArguments(bundle);
+//        //============================
+
+
         if (flag == 0) {
             ft.add(R.id.container, fragment);
+            fm.popBackStack(ROOT_FRAGMENT_TAG,FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            ft.addToBackStack(ROOT_FRAGMENT_TAG);
+
         }else{
             ft.replace(R.id.container,fragment);
+            ft.addToBackStack(null);
         }
         ft.commit();
+    }
+
+
+    public void CallFromFragment(){
+        Log.d("inAct","from Fragment");
     }
 }
